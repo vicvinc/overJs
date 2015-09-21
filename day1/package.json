@@ -1,0 +1,23 @@
+{
+  "name": "day1",
+  "version": "1.0.0",
+  "description": "overthrough JS @ day1",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vicvinc/overJs.git"
+  },
+  "keywords": [
+    "overview",
+    "js"
+  ],
+  "author": "vicvinc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vicvinc/overJs/issues"
+  },
+  "homepage": "https://github.com/vicvinc/overJs#readme"
+}
