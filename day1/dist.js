@@ -48,23 +48,36 @@
 	* @Author: Administrator
 	* @Date:   2015-09-21 14:49:53
 	* @Last Modified by:   Administrator
-	* @Last Modified time: 2015-09-21 17:27:09
+	* @Last Modified time: 2015-09-22 15:46:44
 	*/
 
 	'use strict';
 
 	var _appJs = __webpack_require__(1);
 
+	// import * as btstp from 'react-bootstrap';
+
 	console.log('env test');
 
 	__webpack_require__(2);
 	var React = __webpack_require__(6);
+	var app = React.createClass({
+		displayName: 'app',
 
-	var appContainer = React.createClass({
-		displayName: 'appContainer',
-
-		timeHandler: function timeHandler() {
-			(0, _appJs.apptime)();
+		getInitialState: function getInitialState() {
+			return { curTime: 0 };
+		},
+		countState: function countState() {
+			this.setState({ curTime: this.state.curTime + 1 });
+		},
+		startHandler: function startHandler() {
+			this.interval = setInterval(this.countState, 1000);
+		},
+		stopHandler: function stopHandler() {
+			clearInterval(this.interval);
+		},
+		clearHandler: function clearHandler() {
+			this.setState({ curTime: 0 });
 		},
 		render: function render() {
 			return React.createElement(
@@ -78,8 +91,8 @@
 						null,
 						React.createElement(
 							'a',
-							{ href: '#1' },
-							'Home'
+							{ href: 'javascript:void(0)', onClick: this.startHandler },
+							'Start'
 						)
 					),
 					React.createElement(
@@ -87,8 +100,8 @@
 						null,
 						React.createElement(
 							'a',
-							{ href: 'javascript:void(0)', onClick: this.timeHandler },
-							'Time'
+							{ href: 'javascript:void(0)', onClick: this.stopHandler },
+							'Stop'
 						)
 					),
 					React.createElement(
@@ -96,23 +109,31 @@
 						null,
 						React.createElement(
 							'a',
-							{ href: '#3' },
-							'Account'
+							{ href: 'javascript:void(0)', onClick: this.clearHandler },
+							'Clear'
+						)
+					),
+					React.createElement(
+						'li',
+						null,
+						React.createElement(
+							'a',
+							{ href: 'javascript:void(0)' },
+							React.createElement(
+								'span',
+								null,
+								'Ticked: '
+							),
+							this.state.curTime
 						)
 					)
 				)
 			);
 		}
 	});
-	// var sayTime = React.createClass({
-	// 	render: function() {
-	// 		return (
-	// 				<div id="time-zone"></div>
-	// 			);
-	// 	}
-	// });
-	//unused
-	React.render(React.createElement(appContainer, null), document.getElementById('app'));
+	React.render(React.createElement(app, null),
+	//<app />,// this kind of mount doesnt work here. idkw.
+	document.getElementById('app'));
 
 /***/ },
 /* 1 */
@@ -122,7 +143,7 @@
 	* @Author: Administrator
 	* @Date:   2015-09-21 16:31:32
 	* @Last Modified by:   Administrator
-	* @Last Modified time: 2015-09-21 17:39:03
+	* @Last Modified time: 2015-09-22 14:51:30
 	*/
 	//when I was trying to write something
 	//then everythin become blank in my mind
@@ -145,13 +166,17 @@
 		timeContainer.innerHTML = 'current time:' + t;
 		return;
 	};
-	var app = function app() {
-		setTimeout(function () {
-			var t = Date();
-			sayTime(t);
-		}, 10);
+	var start = function start() {
+		var t = 0;
+		return setInterval(function () {
+			t++;
+		}, 1000);
 	};
-	exports.apptime = app;
+	var stop = function stop(f) {
+		clearInterval(f);
+	};
+	exports.startCount = start;
+	exports.stopCount = stop;
 
 /***/ },
 /* 2 */
@@ -188,7 +213,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  margin: 0px !important;\n  padding: 0px !important;\n}\n.app {\n  height: 18px;\n  top: 0px;\n  color: #226600;\n  background-color: #226600;\n  border-color: #55ff00;\n}\n.app div {\n  width: 900px;\n  margin: 0 auto;\n  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);\n}\n.app ul {\n  list-style-type: none;\n  margin: 0px;\n}\n.app ul li {\n  float: left;\n  padding: 0px 2px;\n  font-size: 14px;\n}\n.app ul li a {\n  padding: 1px 1px;\n  background-color: #f3f1f1;\n  text-decoration: none;\n  -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);\n  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);\n}\n.app ul li a:hover {\n  color: #226600;\n  -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);\n  box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);\n}\n.app ul li a:visited {\n  color: #226600;\n}\n", ""]);
+	exports.push([module.id, "body {\n  margin: 0px !important;\n  padding: 0px !important;\n  font-family: Arial;\n}\n.app {\n  height: 20px;\n  top: 0px;\n  color: #226600;\n  background-color: #226600;\n  border-color: #55ff00;\n}\n.app div {\n  width: 900px;\n  margin: 0 auto;\n  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);\n}\n.app ul {\n  list-style-type: none;\n  margin: 0px;\n}\n.app ul li {\n  float: left;\n  padding: 2px 2px;\n  font-size: 14px;\n}\n.app ul li a {\n  padding: 1px 1px;\n  background-color: #f3f1f1;\n  color: #010101;\n  text-decoration: none;\n  -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);\n  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);\n}\n.app ul li a:hover {\n  color: #010101;\n  -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);\n  box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);\n}\n.app ul li a:visited {\n  color: #010101;\n}\n", ""]);
 
 	// exports
 

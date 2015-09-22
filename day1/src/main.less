@@ -1,11 +1,13 @@
 
 @base: #226600;
 @info: #F2F2F2;
+@black: #010101;
 @contain-w: 900px;
 
 body{
 	margin: 0px !important;
 	padding: 0px !important;
+	font-family: Arial;
 }
 .box-shadow(@style, @c) when (iscolor(@c)) {
 	-webkit-box-shadow: @style @c;
@@ -15,7 +17,7 @@ body{
 	.box-shadow(@style, rgba(0, 0, 0, @alpha));
 }
 .app {
-	height: 18px;
+	height: 20px;
 	top: 0px;
 	color: saturate(@base, 70%);
 	background-color: saturate(@base, 5%);
@@ -30,20 +32,21 @@ body{
 		margin: 0px;
 		li {
 			float: left;
-			padding: 0px 2px;
+			padding: 2px 2px;
 			font-size: 14px;
 			a {
 				padding: 1px 1px;
 				background-color: saturate(@info, 10%);
+				color: saturate(@black, 10%);
 				text-decoration: none;
 				.box-shadow(0 0 6px, 40%);
 			}
 			a:hover {
-				color: saturate(@base, 10%);
+				color: saturate(@black, 20%);
 				.box-shadow(0 0 6px, 60%);
 			}
 			a:visited {
-				color: saturate(@base, 40%);
+				color: saturate(@black, 40%);
 			}
 		}
 	}

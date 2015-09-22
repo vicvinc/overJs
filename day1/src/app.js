@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2015-09-21 16:31:32
 * @Last Modified by:   Administrator
-* @Last Modified time: 2015-09-21 17:39:03
+* @Last Modified time: 2015-09-22 14:51:30
 */
 //when I was trying to write something 
 //then everythin become blank in my mind
@@ -23,10 +23,16 @@ function sayTime(t) {
 		timeContainer.innerHTML = 'current time:' + t;
 	return;
 };
-var app = function() {
-	setTimeout(function() { 
-		var t = Date();
-		sayTime(t);
-	}, 10);
+var start = function() {
+		var t = 0;
+		return setInterval(function() { 
+			t++;
+		}, 1000);
+	}
+var stop = function(f) {
+	clearInterval(f);
+}
+export {
+	start as startCount,
+	stop as stopCount
 };
-export {app as apptime};

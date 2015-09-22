@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2015-09-21 14:49:53
 * @Last Modified by:   Administrator
-* @Last Modified time: 2015-09-21 17:27:09
+* @Last Modified time: 2015-09-22 15:46:44
 */
 
 'use strict';
@@ -11,39 +11,48 @@ console.log('env test');
 
 require('style-loader!css-loader!less-loader!./main.less');
 var React = require('react');
-import {apptime} from './app.js';
+import { startCount, stopCount } from './app.js';
+// import * as btstp from 'react-bootstrap';
 
-var appContainer = React.createClass({
-	timeHandler: function() {
-		apptime();
+var app = React.createClass({
+	getInitialState: function() {
+		return { curTime: 0 };
+	},
+	countState: function() {
+		this.setState({ curTime: this.state.curTime+1 });
+	},
+	startHandler: function() {
+		this.interval = setInterval(this.countState, 1000);
+	},
+	stopHandler: function() {
+		clearInterval(this.interval);
+	},
+	clearHandler: function() {
+		this.setState({ curTime: 0 });
 	},
 	render: function() {
 		return (
 				<div class="nav">
 					<ul>
 						<li>
-							<a href="#1">Home</a>
+							<a href="javascript:void(0)" onClick = { this.startHandler }>Start</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)" onClick = { this.stopHandler }>Stop</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)" onClick = {  this.clearHandler}>Clear</a>
 						</li> 
 						<li>
-							<a href="javascript:void(0)" onClick={this.timeHandler}>Time</a>
-						</li>
-						<li>
-							<a href="#3">Account</a>
-						</li>
+							<a href="javascript:void(0)"><span>Ticked: </span>{ this.state.curTime }</a>
+						</li> 
 					</ul>
 				</div>
 			);
 	}
 });
-// var sayTime = React.createClass({
-// 	render: function() {
-// 		return (
-// 				<div id="time-zone"></div>
-// 			);
-// 	}
-// });
-//unused
 React.render(
-	React.createElement(appContainer, null), 
+	React.createElement(app, null), 
+	//<app />,// this kind of mount doesnt work here. idkw.
 	document.getElementById('app')
 );
