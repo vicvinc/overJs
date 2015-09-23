@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2015-09-21 14:49:53
 * @Last Modified by:   Administrator
-* @Last Modified time: 2015-09-22 15:46:44
+* @Last Modified time: 2015-09-23 14:04:53
 */
 
 'use strict';
@@ -32,7 +32,7 @@ var app = React.createClass({
 	},
 	render: function() {
 		return (
-				<div class="nav">
+				<div className="nav">
 					<ul>
 						<li>
 							<a href="javascript:void(0)" onClick = { this.startHandler }>Start</a>
