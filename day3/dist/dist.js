@@ -48,7 +48,7 @@
 	* @Author: Administrator
 	* @Date:   2015-09-22 15:08:48
 	* @Last Modified by:   Administrator
-	* @Last Modified time: 2015-09-23 17:24:41
+	* @Last Modified time: 2015-09-24 11:14:53
 	*/
 
 	'use strict';
@@ -108,7 +108,7 @@
 					null,
 					'remeber me'
 				),
-				React.createElement('input', { type: 'checkbox', name: 'RemeberMe', value: 'true', ref: 'remeberMe' }),
+				React.createElement('input', { type: 'checkbox', name: 'RemeberMe', value: 'false', ref: 'remeberMe' }),
 				React.createElement(
 					'button',
 					{ type: 'submit', className: 'btn-info', onClick: this.popHandler },
@@ -142,14 +142,15 @@
 			var url = '';
 			var params = JSON.stringify(data);
 			console.log(data);
-			_libUtilsJs2['default'].httpPost(url, params, function (d) {
-				alert(d);
+			_libUtilsJs2['default'].httpPost(url, params, function (resp) {
+				alert(resp.msg);
+				if (resp.code) {}
 			}, null);
 		},
 		render: function render() {
 			return React.createElement(
 				'div',
-				{ className: 'login' },
+				{ className: 'container' },
 				React.createElement('input', { name: 'UserName', className: 'user-name', tyep: 'txt',
 					placeholder: 'Your user name or login email', ref: 'userName' }),
 				React.createElement('input', { name: 'UserPwd', className: 'user-pwd', type: 'password',
