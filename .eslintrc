@@ -1,0 +1,21 @@
+{
+  "root": true,
+  "env": {
+    "jest": true
+  },
+  "extends": ["airbnb"],
+  "rules": {
+    "space-before-function-paren": ["error", "never"],
+    "quotes": ["error", "double"],
+    "jsx-quotes": ["error", "prefer-double"],
+    "camelcase": [
+      0,
+      {
+        "properties": "never",
+        "ignoreDestructuring": true
+      }
+    ],
+    "no-sparse-arrays": 0,
+    "new-cap": 0
+  }
+}
